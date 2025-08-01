@@ -1,0 +1,78 @@
+String springVersion = "4.1.9.RELEASE"
+
+buildscript {
+	repositories {
+		maven {
+			url "https://repository-cdn.liferay.com/nexus/content/groups/public"
+		}
+	}
+
+	dependencies {
+		classpath group: "com.liferay", name: "com.liferay.gradle.plugins.css.builder", version: "5.0.9"
+	}
+}
+
+apply plugin: "com.liferay.css.builder"
+
+dependencies {
+	implementation(group: "com.rometools", name: "rome", version: "1.16.0") {
+		exclude group: "org.slf4j", module: "slf4j-api"
+	}
+	implementation(group: "org.hibernate.validator", name: "hibernate-validator", version: "6.2.5.Final") {
+		exclude group: "javax.validation", module: "validation-api"
+	}
+	implementation (group: "org.springframework", name: "spring-aop") {
+		version {
+			strictly springVersion
+		}
+	}
+	implementation (group: "org.springframework", name: "spring-beans") {
+		version {
+			strictly springVersion
+		}
+	}
+	implementation (group: "org.springframework", name: "spring-context") {
+		version {
+			strictly springVersion
+		}
+	}
+	implementation (group: "org.springframework", name: "spring-core") {
+		version {
+			strictly springVersion
+		}
+	}
+	implementation (group: "org.springframework", name: "spring-expression") {
+		version {
+			strictly springVersion
+		}
+	}
+	implementation (group: "org.springframework", name: "spring-web") {
+		version {
+			strictly springVersion
+		}
+	}
+	implementation (group: "org.springframework", name: "spring-webmvc") {
+		version {
+			strictly springVersion
+		}
+	}
+	implementation (group: "org.springframework", name: "spring-webmvc-portlet") {
+		version {
+			strictly springVersion
+		}
+	}
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
+	compileOnly (group: "javax.portlet", name: "portlet-api") {
+		version {
+			strictly "2.0"
+		}
+	}
+	compileOnly group: "javax.servlet", name: "javax.servlet-api"
+	compileOnly group: "javax.validation", name: "validation-api", version: "2.0.1.Final"
+	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
+	compileOnly group: "org.slf4j", name: "slf4j-api"
+
+	cssBuilder group: "com.liferay", name: "com.liferay.css.builder", version: "3.1.4"
+
+	portalCommonCSS group: "com.liferay", name: "com.liferay.frontend.css.common"
+}
